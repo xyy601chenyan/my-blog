@@ -25,12 +25,13 @@
 
       <ul>
         <li class="category">Social</li>
-        <li><a href="https://twitter.com/mackenziechild">Twitter</a></li>
-        <li><a href="http://instagram.com/mackenziechild">Instagram</a></li>
-        <li><a href="https://github.com/mackenziechild">Github</a></li>
-        <li><a href="mailto:hey@mackenziechild.me">Email</a></li>
+        <li><a href="http://xyy601-blog.logdown.com">Blog</a></li>
+        <li><a href="https://github.com/xyy601chenyan">Github</a></li>
+        <li><a href="mailto:xyy545688506@gmail.com">Email</a></li>
       </ul>
-      <p class="sign_in">Admin Login</p>
+      <% if !user_signed_in? %>
+      <p class="sign_in"><%=link_to "Admin Login",new_user_registration_path%></a></p>
+      <% end  %>
     </div>
     <div id="main_content">
       <div id="header">
@@ -42,10 +43,12 @@
         <%= link_to "Back to All posts", root_path %>
         <% end  %>
 
+       <% if user_signed_in? %>
         <div class="buttons">
           <button class="button"><%= link_to "New Post", new_post_path %></button>
-          <button class="button">Log Out</button>
+          <button class="button"><%=link_to "Log Out", destroy_user_session_path, method: :delete %></button>
         </div>
+        <% end  %>
       </div>
 
       <% flash.each do |name,msg| %>
