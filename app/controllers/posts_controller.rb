@@ -4,14 +4,18 @@ class PostsController < ApplicationController
   end
 
   def new
-   @post = Post.new
+  @post = Post.new
   end
 
   def create
    @post = Post.new(post_params)
-   @post.save
+   if @post.save
 
    redirect_to @post
+ else
+   render 'new'
+   #redirect_to new_post_path
+ end
   end
 
   def show
